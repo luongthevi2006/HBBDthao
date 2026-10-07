@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday Hồ Thị Thanh Thảo</title>
+    <!-- Import Font chữ nghệ thuật & cute -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&family=Mali:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #fff0f5 0%, #fbcfe8 50%, #f472b6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #831843;
+            user-select: none;
+        }
+
+        .card-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #effectsCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: auto;
+            z-index: 2;
+        }
+
+        /* STAGE 1: Que diêm & Trái tim siêu đáng yêu */
+        .stage-1 {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 72vh;
+            transition: opacity 1s ease, transform 1s ease;
+            z-index: 10;
+        }
+
+        .subtitle-top {
+            font-family: 'Mali', cursive;
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #9d174d;
+            background: rgba(255, 255, 255, 0.65);
+            padding: 8px 22px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.25);
+            backdrop-filter: blur(5px);
+            animation: bounceSoft 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* Trái tim có mặt Mochi kute */
+        .heart-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 25px 0;
+            animation: floatHeart 3s infinite ease-in-out;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+
+        .heart-3d {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff3b7b, #be185d);
+            transform: rotate(-45deg);
+            animation: pulseCute 1.2s infinite alternate cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 35px rgba(255, 59, 123, 0.6), 0 0 70px rgba(244, 63, 94, 0.4);
+            border-radius: 4px;
+        }
+
+        .heart-3d::before,
+        .heart-3d::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff3b7b, #be185d);
+            border-radius: 50%;
+        }
+
+        .heart-3d::before { top: -50px; left: 0; }
+        .heart-3d::after { left: 50px; top: 0; }
+
+        @keyframes pulseCute {
+            0% { transform: rotate(-45deg) scale(0.92); box-shadow: 0 0 25px rgba(255, 59, 123, 0.5); }
+            100% { transform: rotate(-45deg) scale(1.08); box-shadow: 0 0 45px rgba(255, 59, 123, 0.85), 0 0 85px rgba(244, 63, 94, 0.6); }
+        }
+
+        /* Khuôn mặt Mochi trên trái tim */
+        .heart-face {
+            position: absolute;
+            z-index: 15;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            top: -5px;
+        }
+
+        .eyes {
+            display: flex;
+            gap: 24px;
+        }
+
+        .eye {
+            width: 10px;
+            height: 12px;
+            background: #4a0e17;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .blush {
+            display: flex;
+            gap: 32px;
+            margin-top: -3px;
+        }
+
+        .blush-dot {
+            width: 12px;
+            height: 6px;
+            background: #ff80ab;
+            border-radius: 50%;
+            opacity: 0.95;
+        }
+
+        .mouth {
+            width: 10px;
+            height: 6px;
+            border-bottom: 2.5px solid #4a0e17;
+            border-radius: 0 0 10px 10px;
+            margin-top: 1px;
+        }
+
+        /* Que diêm đáng yêu */
+        .match-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: matchWiggle 2.8s infinite ease-in-out;
+        }
+
+        .match-box:hover {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        @keyframes matchWiggle {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            20% { transform: rotate(-5deg) translateY(-3px); }
+            40% { transform: rotate(5deg) translateY(-3px); }
+            60% { transform: rotate(0deg) translateY(0); }
+        }
+
+        .matchstick {
+            position: relative;
+            width: 8px;
+            height: 90px;
+            background: linear-gradient(to right, #f5e6d3, #d7ccc8);
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .match-head {
+            position: absolute;
+            top: -14px;
+            left: -5px;
+            width: 18px;
+            height: 20px;
+            background: linear-gradient(135deg, #e11d48, #be185d);
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.7);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        /* Ngọn lửa nhỏ nhảy múa chờ đợi */
+        .little-spark {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 12px;
+            background: linear-gradient(to top, #ff9800, #ffeb3b);
+            border-radius: 50% 50% 35% 35%;
+            box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
+            animation: sparkFlicker 0.7s infinite alternate ease-in-out;
+        }
+
+        @keyframes sparkFlicker {
+            0% { transform: translateX(-50%) scale(0.7) rotate(-5deg); opacity: 0.7; }
+            100% { transform: translateX(-50%) scale(1.25) rotate(5deg); opacity: 1; }
+        }
+
+        .pull-text {
+            margin-top: 18px;
+            font-family: 'Mali', cursive;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #9d174d;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 24px;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            border: 2px solid #f472b6;
+            box-shadow: 0 6px 20px rgba(244, 114, 182, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: btnPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { box-shadow: 0 6px 20px rgba(244, 114, 182, 0.35); transform: translateY(0); }
+            50% { box-shadow: 0 10px 28px rgba(244, 114, 182, 0.6); transform: translateY(-4px); }
+        }
+
+        /* STAGE 2: Nội dung chính */
+        .stage-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 8vw;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.5s ease;
+            z-index: 5;
+        }
+
+        .content-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            max-width: 520px;
+            z-index: 6;
+            pointer-events: auto;
+        }
+
+        .wish-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #9d174d;
+            margin-bottom: -10px;
+        }
+
+        .main-heading {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.4rem, 7vw, 5.6rem);
+            font-weight: 400;
+            text-wrap: balance;
+            color: #be185d;
+            text-shadow: 2px 4px 15px rgba(255, 255, 255, 0.9);
+            line-height: 1.15;
+            margin-bottom: 5px;
+        }
+
+        .sub-heading {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #831843;
+            margin-bottom: 8px;
+            opacity: 0.95;
+        }
+
+        .date-tag {
+            font-family: 'Mali', cursive;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #be185d;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 4px 16px;
+            border-radius: 15px;
+            border: 1.5px dashed #f472b6;
+            margin-bottom: 15px;
+            display: inline-block;
+            box-shadow: 0 2px 10px rgba(244, 114, 182, 0.2);
+        }
+
+        /* Nút gợi ý thổi nến */
+        .blow-hint {
+            margin-top: 10px;
+            font-family: 'Mali', cursive;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #be185d;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 24px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(190, 24, 93, 0.25);
+            cursor: pointer;
+            border: 2px solid #f472b6;
+            animation: bounce 1.5s infinite ease-in-out;
+            transition: all 0.3s;
+        }
+
+        .blow-hint:hover {
+            background: #be185d;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .flash-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease-out;
+            z-index: 20;
+        }
+
+        /* One orchestrated entrance when the card opens */
+        .stage-2.show .content-left > * { animation: riseIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+        .stage-2.show .content-left > :nth-child(2) { animation-delay: 0.15s; }
+        .stage-2.show .content-left > :nth-child(3) { animation-delay: 0.3s; }
+        .stage-2.show .content-left > :nth-child(4) { animation-delay: 0.45s; }
+        .stage-2.show .content-left > .blow-hint {
+            animation: riseIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s backwards,
+                       bounce 1.5s ease-in-out 1.6s infinite;
+        }
+        @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } }
+
+        .match-box:focus-visible, .blow-hint:focus-visible {
+            outline: 3px solid #be185d;
+            outline-offset: 4px;
+        }
+        [hidden] { display: none !important; }
+        .wish-form { margin-top: 12px; width: min(420px, 86vw); }
+        .wish-label {
+            display: block;
+            margin-bottom: 6px;
+            font-family: 'Mali', cursive;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #9d174d;
+        }
+        .wish-row { display: flex; gap: 8px; }
+        .wish-row input {
+            flex: 1;
+            min-width: 0;
+            font: 500 0.95rem 'Poppins', sans-serif;
+            color: #831843;
+            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid #f472b6;
+            border-radius: 25px;
+            padding: 10px 16px;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+        .wish-row button {
+            font-family: 'Mali', cursive;
+            font-weight: 700;
+            color: #fff;
+            background: #be185d;
+            border: 0;
+            border-radius: 25px;
+            padding: 10px 18px;
+            cursor: pointer;
+        }
+        .wish-row input:focus-visible, .wish-row button:focus-visible {
+            outline: 3px solid #be185d;
+            outline-offset: 2px;
+        }
+        .wish-note {
+            margin-top: 12px;
+            max-width: 420px;
+            font-family: 'Mali', cursive;
+            font-weight: 600;
+            font-size: 1.05rem;
+            line-height: 1.45;
+            color: #9d174d;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 12px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(244, 114, 182, 0.3);
+            overflow-wrap: anywhere;
+            animation: riseIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+        }
+        .wish-sent {
+            margin-top: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #be185d;
+        }
+        .blow-hint:disabled { cursor: default; }
+        .blow-hint:disabled:hover { transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+        }
+
+        @media (max-width: 850px) {
+            .stage-2 {
+                justify-content: center;
+                padding-left: 0;
+                align-items: flex-start;
+                padding-top: 80px;
+            }
+            .content-left {
+                align-items: center;
+                text-align: center;
+            }
+            .main-heading { font-size: clamp(3rem, 14vw, 3.8rem); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <canvas id="effectsCanvas"></canvas>
+
+        <!-- Stage 1 -->
+        <div class="stage-1" id="stage1">
+            <div class="subtitle-top">✨ A little something, for you ✨</div>
+            
+            <div class="heart-wrapper">
+                <div class="heart-3d"></div>
+                <div class="heart-face">
+                    <div class="eyes">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                    <div class="blush">
+                        <div class="blush-dot"></div>
+                        <div class="blush-dot"></div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+
+            <div class="match-box" id="matchBtn" role="button" tabindex="0" aria-label="Chạm vào que diêm để mở thiệp">
+                <div class="matchstick">
+                    <div class="little-spark"></div>
+                    <div class="match-head" id="matchHead"></div>
+                </div>
+                <div class="pull-text">💖 CHẠM VÀO QUE DIÊM ĐỂ MỞ 💖</div>
+            </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="stage-2" id="stage2">
+            <div class="content-left">
+                <div class="wish-text">and... make it count</div>
+                <h1 class="main-heading">Happy 20th Birthday</h1>
+                <div class="sub-heading">Hồ Thị Thanh Thảo</div>
+                <div class="date-tag">✨ 18 . 10 . 2026 ✨</div>
+                <button type="button" class="blow-hint" id="blowBtn">🎂 Chạm để thổi nến chúc mừng!</button>
+                <form class="wish-form" id="wishForm" hidden>
+                    <label class="wish-label" for="wishInput">Viết điều ước của bạn nhé 💫</label>
+                    <div class="wish-row">
+                        <input id="wishInput" type="text" maxlength="80" autocomplete="off" placeholder="Điều ước tuổi 20 của mình là...">
+                        <button type="submit">Gửi ✨</button>
+                    </div>
+                </form>
+                <div class="wish-note" id="wishNote" hidden></div>
+            </div>
+        </div>
+
+        <div class="flash-overlay" id="flash"></div>
+    </div>
+
+    <script>
+        const stage1 = document.getElementById('stage1');
+        const stage2 = document.getElementById('stage2');
+        const matchBtn = document.getElementById('matchBtn');
+        const matchHead = document.getElementById('matchHead');
+        const flash = document.getElementById('flash');
+        const blowBtn = document.getElementById('blowBtn');
+        const canvas = document.getElementById('effectsCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let W = 0, H = 0;
+        function resizeCanvas() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            W = window.innerWidth;
+            H = window.innerHeight;
+            canvas.width = Math.round(W * dpr);
+            canvas.height = Math.round(H * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        // One source of truth for where the tree/bench sit; scales down on small screens
+        function getLayout() {
+            const isMobile = W < 850;
+            return {
+                treeX: isMobile ? W * 0.5 : W * 0.73,
+                treeBaseY: H,
+                treeHeadY: isMobile ? H * 0.45 : H * 0.48,
+                scale: Math.min(1, W / (isMobile ? 700 : 1500), H / 760)
+            };
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let particles = [];
+        let treeProgress = 0;
+        let isTreeGrowing = false;
+        let balloonLeaves = [];
+        let fallingHearts = [];
+        
+        // Trạng thái thổi nến
+        let candleLit = true;
+        let isBlowing = false;
+        let windParticles = [];
+        let smokeParticles = [];
+        let celebrationParticles = [];
+
+        const heartColors = [
+            '#ff2a6d', '#ff4d6d', '#ff758f', '#ffb3c1', 
+            '#fba1b7', '#f43f5e', '#e11d48', '#fbbf24', 
+            '#fef08a', '#fda4af', '#f472b6', '#db2777'
+        ];
+
+        // Đom đóm & Ngôi sao lấp lánh Stage 1
+        for (let i = 0; i < 55; i++) {
+            particles.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                radius: Math.random() * 3 + 1.2,
+                alpha: Math.random(),
+                speedY: Math.random() * -0.4 - 0.1,
+                speedX: (Math.random() - 0.5) * 0.3
+            });
+        }
+
+        let isActivated = false;
+        matchBtn.addEventListener('click', ignite);
+        matchBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ignite(); }
+        });
+
+        function ignite() {
+            if (isActivated) return;
+            isActivated = true;
+
+            matchHead.style.background = '#ffeb3b';
+            matchHead.style.boxShadow = '0 0 30px #ff5722, 0 0 60px #ffeb3b';
+
+            createSparks();
+
+            setTimeout(() => {
+                flash.style.opacity = '1';
+                setTimeout(() => {
+                    stage1.style.opacity = '0';
+                    stage1.style.display = 'none';
+                    stage2.style.opacity = '1';
+                    stage2.classList.add('show');
+                    flash.style.opacity = '0';
+
+                    isTreeGrowing = true;
+                    initTreeLeaves();
+                }, 600);
+            }, 400);
+        }
+
+        function createSparks() {
+            const rect = matchHead.getBoundingClientRect();
+            const startX = rect.left + rect.width / 2;
+            const startY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 60; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 7 + 2;
+                particles.push({
+                    x: startX,
+                    y: startY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 2,
+                    radius: Math.random() * 5 + 2,
+                    color: ['#ffeb3b', '#ff9800', '#ff5722', '#ffffff', '#f472b6'][Math.floor(Math.random() * 5)],
+                    life: 1
+                });
+            }
+        }
+
+        function initTreeLeaves() {
+            balloonLeaves = [];
+            const clusters = [
+                { cx: 0, cy: -150, rx: 200, ry: 140, count: 240 },
+                { cx: -130, cy: -100, rx: 160, ry: 120, count: 200 },
+                { cx: 130, cy: -100, rx: 160, ry: 120, count: 200 },
+                { cx: -180, cy: -30, rx: 130, ry: 95, count: 130 },
+                { cx: 180, cy: -30, rx: 130, ry: 95, count: 130 },
+                { cx: 0, cy: -50, rx: 150, ry: 110, count: 160 }
+            ];
+
+            clusters.forEach(c => {
+                for (let i = 0; i < c.count; i++) {
+                    let r = Math.sqrt(Math.random());
+                    let theta = Math.random() * Math.PI * 2;
+
+                    let relX = c.cx + r * c.rx * Math.cos(theta) + (Math.random() - 0.5) * 15;
+                    let relY = c.cy + r * c.ry * Math.sin(theta) + (Math.random() - 0.5) * 15;
+
+                    balloonLeaves.push({
+                        relX: relX,
+                        relY: relY,
+                        currentScale: 0,
+                        maxScale: Math.random() * 8 + 7.5,
+                        color: heartColors[Math.floor(Math.random() * heartColors.length)],
+                        rotation: (Math.random() - 0.5) * 0.9,
+                        delay: Math.random() * 90
+                    });
+                }
+            });
+        }
+
+        function spawnFallingHeart(treeX, treeHeadY) {
+            const randomLeaf = balloonLeaves[Math.floor(Math.random() * balloonLeaves.length)];
+            const startX = treeX + (randomLeaf ? randomLeaf.relX : (Math.random() - 0.5) * 300);
+            const startY = treeHeadY + (randomLeaf ? randomLeaf.relY : -80);
+
+            fallingHearts.push({
+                x: startX,
+                y: startY,
+                size: Math.random() * 6 + 6,
+                color: heartColors[Math.floor(Math.random() * heartColors.length)],
+                speedY: Math.random() * 0.8 + 0.6,
+                swaySpeed: Math.random() * 0.03 + 0.015,
+                swayRange: Math.random() * 1.8 + 0.8,
+                swayAngle: Math.random() * Math.PI * 2,
+                rotation: Math.random() * Math.PI,
+                rotSpeed: (Math.random() - 0.5) * 0.03,
+                opacity: 1
+            });
+        }
+
+        function drawHeart(x, y, size, color, rotation = 0, opacity = 1) {
+            ctx.save();
+            ctx.translate(x, y);
+            if (rotation) ctx.rotate(rotation);
+            ctx.globalAlpha = opacity;
+            ctx.beginPath();
+            ctx.fillStyle = color;
+
+            let topCurveHeight = size * 0.3;
+            ctx.moveTo(0, topCurveHeight);
+            ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+            ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, size, 0, size);
+            ctx.bezierCurveTo(0, size, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+            ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // KÍCH HOẠT HÀNH ĐỘNG THỔI NẾN
+        function triggerBlowCandle() {
+            if (!candleLit || isBlowing) return;
+            isBlowing = true;
+            
+            const { treeX, treeBaseY } = getLayout();
+            const benchY = treeBaseY - 55; // same anchor as drawBenchCoupleCake
+
+            const girlMouthX = treeX + 22;
+            const girlMouthY = benchY - 62;
+            const candleX = treeX;
+            const candleY = benchY - 42;
+
+            // Tạo luồng gió thổi từ miệng bạn nữ tới nến
+            for (let i = 0; i < 35; i++) {
+                windParticles.push({
+                    x: girlMouthX,
+                    y: girlMouthY + (Math.random() - 0.5) * 6,
+                    vx: - (Math.random() * 2.2 + 1.8),
+                    vy: (candleY - girlMouthY) * 0.04 + (Math.random() - 0.5) * 0.5,
+                    life: 1,
+                    size: Math.random() * 3 + 2,
+                    color: 'rgba(255, 255, 255, 0.85)'
+                });
+            }
+
+            // Tắt nến sau khi gió thổi tới
+            setTimeout(() => {
+                candleLit = false;
+                isBlowing = false;
+                blowBtn.textContent = "✨ Nến đã tắt rồi — viết điều ước nhé! ❤️";
+                blowBtn.style.background = "#4ade80";
+                blowBtn.style.color = "#064e3b";
+                blowBtn.style.borderColor = "#22c55e";
+                blowBtn.style.animation = "none";
+                blowBtn.disabled = true;
+                setTimeout(() => { wishForm.hidden = false; wishInput.focus(); }, 900);
+
+                // Tạo làn khói tỏa ra từ nến
+                for (let i = 0; i < 20; i++) {
+                    smokeParticles.push({
+                        x: candleX,
+                        y: candleY,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: - Math.random() * 1.5 - 0.5,
+                        size: Math.random() * 4 + 3,
+                        alpha: 0.8
+                    });
+                }
+
+                // Pháo hoa trái tim chúc mừng bùng nổ
+                for (let i = 0; i < 65; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 5 + 2;
+                    celebrationParticles.push({
+                        x: candleX,
+                        y: candleY - 20,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed - 1.5,
+                        size: Math.random() * 8 + 6,
+                        color: heartColors[Math.floor(Math.random() * heartColors.length)],
+                        alpha: 1
+                    });
+                }
+            }, 550);
+        }
+
+        // Dán Access Key của Web3Forms vào đây (lấy miễn phí tại web3forms.com)
+        const WEB3FORMS_KEY = '2d838283-f88c-41bb-8c5c-8c16b8134ca6';
+
+        const wishForm = document.getElementById('wishForm');
+        const wishInput = document.getElementById('wishInput');
+        const wishNote = document.getElementById('wishNote');
+
+        wishForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = wishInput.value.trim();
+            if (!text) { wishInput.focus(); return; }
+            try { localStorage.setItem('birthdayWish', text); } catch (_) {}
+
+            // Gửi điều ước về email của bạn qua Web3Forms
+            wishForm.querySelector('button').disabled = true;
+            let delivered = false;
+            let errMsg = '';
+            if (WEB3FORMS_KEY && WEB3FORMS_KEY !== 'DAN_ACCESS_KEY_VAO_DAY') {
+                try {
+                    const res = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify({
+                            access_key: WEB3FORMS_KEY,
+                            subject: 'Điều ước sinh nhật tuổi 20',
+                            from_name: 'Thiệp sinh nhật',
+                            message: text
+                        })
+                    });
+                    const data = await res.json();
+                    delivered = res.ok && data.success === true;
+                    if (!delivered) errMsg = data.message || ('HTTP ' + res.status);
+                } catch (err) {
+                    errMsg = err.message || 'lỗi mạng';
+                    console.error('Web3Forms error:', err);
+                }
+            }
+
+            wishForm.hidden = true;
+            wishNote.textContent = '';
+            const wishText = document.createElement('div');
+            wishText.textContent = '💫 “' + text + '” 💫';
+            const sent = document.createElement('div');
+            sent.className = 'wish-sent';
+            sent.textContent = delivered ? '💌 Đã được gửi đến anh ấy' : '⚠️ Chưa gửi được' + (errMsg ? ' (' + errMsg + ')' : '') + ', bạn thử lại sau nhé';
+            wishNote.append(wishText, sent);
+            wishNote.hidden = false;
+
+            // Hearts burst from the cake, same coordinates the candle effects use
+            const { treeX, treeBaseY } = getLayout();
+            for (let i = 0; i < 45; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 5 + 2;
+                celebrationParticles.push({
+                    x: treeX,
+                    y: treeBaseY - 55 - 62,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 2,
+                    size: Math.random() * 8 + 6,
+                    color: heartColors[Math.floor(Math.random() * heartColors.length)],
+                    alpha: 1
+                });
+            }
+        });
+
+        blowBtn.addEventListener('click', triggerBlowCandle);
+        canvas.addEventListener('click', (e) => {
+            if (isTreeGrowing && candleLit) {
+                triggerBlowCandle();
+            }
+        });
+
+        // VẼ GHẾ CÔNG VIÊN & 2 BẠN TRẺ VỚI BÁNH KEM
+        function drawBenchCoupleCake(x, y) {
+            ctx.save();
+            ctx.translate(x, y);
+
+            // 1. CHÂN GHẾ VÀ THANH GỖ CÔNG VIÊN
+            ctx.strokeStyle = '#2d3748';
+            ctx.lineWidth = 4.5;
+            ctx.lineCap = 'round';
+
+            // Khung chân sắt uốn nghệ thuật
+            ctx.beginPath();
+            ctx.arc(-75, 35, 18, Math.PI, 0, true);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(-88, 52); ctx.lineTo(-62, 12);
+            ctx.moveTo(-62, 52); ctx.lineTo(-88, 12);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(75, 35, 18, Math.PI, 0, true);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(62, 52); ctx.lineTo(88, 12);
+            ctx.moveTo(88, 52); ctx.lineTo(62, 12);
+            ctx.stroke();
+
+            // Nan gỗ tựa lưng
+            const woodGradient = ctx.createLinearGradient(-85, 0, 85, 0);
+            woodGradient.addColorStop(0, '#f97316');
+            woodGradient.addColorStop(0.5, '#fb923c');
+            woodGradient.addColorStop(1, '#ea580c');
+
+            ctx.fillStyle = woodGradient;
+            ctx.strokeStyle = '#c2410c';
+            ctx.lineWidth = 1.5;
+
+            for (let i = 0; i < 4; i++) {
+                let sy = -45 + i * 10;
+                ctx.beginPath();
+                ctx.roundRect(-85, sy, 170, 7.5, 3.5);
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            // Nan gỗ đệm ngồi
+            for (let i = 0; i < 4; i++) {
+                let sy = -6 + i * 6.5;
+                let sz = 170 + i * 2;
+                ctx.beginPath();
+                ctx.roundRect(-sz/2, sy, sz, 5.5, 2.5);
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            // Tay vịn ghế
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(-86, -22); ctx.bezierCurveTo(-96, -22, -96, 2, -86, 7); ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(86, -22); ctx.bezierCurveTo(96, -22, 96, 2, 86, 7); ctx.stroke();
+
+            // 2. BẠN NAM (bên trái) - tóc đen bồng, áo len navy, giày trắng
+            ctx.save();
+            ctx.lineCap = 'round';
+            // Quần + giày
+            ctx.fillStyle = '#3b3a46';
+            ctx.beginPath();
+            ctx.roundRect(-50, -16, 12, 32, 4);
+            ctx.roundRect(-36, -16, 12, 32, 4);
+            ctx.fill();
+            ctx.fillStyle = '#f8fafc';
+            ctx.strokeStyle = '#cbd5e1';
+            ctx.lineWidth = 1;
+            [-52, -37].forEach(gx => {
+                ctx.beginPath();
+                ctx.roundRect(gx, 15, 15, 8, 3);
+                ctx.fill();
+                ctx.stroke();
+            });
+            // Áo len + cổ áo trắng
+            ctx.fillStyle = '#2f4a8a';
+            ctx.beginPath();
+            ctx.roundRect(-54, -54, 30, 40, [11, 11, 5, 5]);
+            ctx.fill();
+            ctx.fillStyle = '#f8fafc';
+            ctx.beginPath();
+            ctx.ellipse(-37, -54, 6, 2.5, 0, 0, Math.PI * 2);
+            ctx.fill();
+            // Tay đỡ bánh
+            ctx.strokeStyle = '#2f4a8a';
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(-30, -40);
+            ctx.lineTo(-20, -25);
+            ctx.stroke();
+            ctx.fillStyle = '#ffe4cc';
+            ctx.beginPath();
+            ctx.arc(-19, -24, 3.2, 0, Math.PI * 2);
+            ctx.fill();
+            // Tóc (phía sau) + mặt nghiêng về phía bánh
+            ctx.fillStyle = '#1f1a1a';
+            ctx.beginPath();
+            ctx.arc(-41, -70, 14, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#ffe4cc';
+            ctx.beginPath();
+            ctx.arc(-34, -65, 10, 0, Math.PI * 2);
+            ctx.fill();
+            // Mái tóc bồng + sợi tóc dựng
+            ctx.fillStyle = '#1f1a1a';
+            ctx.beginPath();
+            ctx.ellipse(-36, -73, 12, 6.5, -0.15, Math.PI, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.ellipse(-44, -83, 5, 2.2, -0.5, 0, Math.PI * 2);
+            ctx.fill();
+            // Mắt + má hồng
+            ctx.fillStyle = '#2a1414';
+            ctx.beginPath();
+            ctx.ellipse(-28.5, -65, 1.6, 2.2, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = 'rgba(255, 130, 140, 0.7)';
+            ctx.beginPath();
+            ctx.ellipse(-30, -60.5, 3, 1.8, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // 3. BẠN NỮ (bên phải) - tóc nâu dài gợn sóng, nơ đỏ, váy đỏ
+            ctx.save();
+            ctx.lineCap = 'round';
+            // Chân, tất trắng, giày đỏ
+            ctx.fillStyle = '#ffe4cc';
+            ctx.fillRect(26, 8, 7, 10);
+            ctx.fillRect(38, 8, 7, 10);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(26, 16, 7, 7);
+            ctx.fillRect(38, 16, 7, 7);
+            ctx.fillStyle = '#e5495a';
+            ctx.beginPath();
+            ctx.roundRect(23, 22, 11, 6, 3);
+            ctx.roundRect(37, 22, 11, 6, 3);
+            ctx.fill();
+            // Tóc dài phía sau
+            ctx.fillStyle = '#6b3a22';
+            ctx.beginPath();
+            ctx.roundRect(22, -76, 33, 58, 15);
+            ctx.fill();
+            // Váy đỏ: thân + chân váy xòe
+            ctx.fillStyle = '#ef5b6c';
+            ctx.beginPath();
+            ctx.roundRect(24, -52, 25, 34, [10, 10, 4, 4]);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(22, -22);
+            ctx.lineTo(51, -22);
+            ctx.lineTo(60, 10);
+            ctx.quadraticCurveTo(37, 15, 14, 10);
+            ctx.closePath();
+            ctx.fill();
+            // Tay hướng về bánh
+            ctx.strokeStyle = '#ef5b6c';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(28, -38);
+            ctx.lineTo(13, -26);
+            ctx.stroke();
+            ctx.fillStyle = '#ffe4cc';
+            ctx.beginPath();
+            ctx.arc(12, -25, 3, 0, Math.PI * 2);
+            ctx.fill();
+            // Mặt hướng về bánh + mái tóc
+            ctx.beginPath();
+            ctx.arc(31, -64, 11, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#6b3a22';
+            ctx.beginPath();
+            ctx.ellipse(33, -72, 13, 7, 0, Math.PI, Math.PI * 2);
+            ctx.fill();
+            // Nơ đỏ
+            ctx.fillStyle = '#e8344e';
+            ctx.beginPath();
+            ctx.arc(41.5, -72, 4, 0, Math.PI * 2);
+            ctx.arc(49.5, -72, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#c21f3a';
+            ctx.beginPath();
+            ctx.arc(45.5, -72, 2.3, 0, Math.PI * 2);
+            ctx.fill();
+            // Mắt + má hồng
+            ctx.fillStyle = '#2a1414';
+            ctx.beginPath();
+            ctx.ellipse(25, -64, 1.6, 2.2, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = 'rgba(255, 130, 140, 0.7)';
+            ctx.beginPath();
+            ctx.ellipse(26.5, -59.5, 3, 1.8, 0, 0, Math.PI * 2);
+            ctx.fill();
+            // Chu môi thổi nến
+            if (isBlowing) {
+                ctx.fillStyle = '#d9304a';
+                ctx.beginPath();
+                ctx.arc(21.5, -60, 2.4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
+
+            // 4. BÁNH KEM SINH NHẬT CÓ NẾN Ở GIỮA
+            const cakeX = 0;
+            const cakeY = -18;
+
+            // Đĩa bánh
+            ctx.fillStyle = '#e2e8f0';
+            ctx.beginPath();
+            ctx.ellipse(cakeX, cakeY + 12, 20, 5, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Bánh kem
+            ctx.fillStyle = '#fbcfe8';
+            ctx.beginPath();
+            ctx.roundRect(cakeX - 16, cakeY - 2, 32, 14, 3);
+            ctx.fill();
+            ctx.strokeStyle = '#f472b6';
+            ctx.stroke();
+
+            // Kem phủ
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.roundRect(cakeX - 14, cakeY - 10, 28, 10, 3);
+            ctx.fill();
+
+            // Dâu tây
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(cakeX - 8, cakeY - 11, 2.5, 0, Math.PI * 2);
+            ctx.arc(cakeX + 8, cakeY - 11, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Thân nến
+            ctx.fillStyle = '#fef08a';
+            ctx.strokeStyle = '#eab308';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.roundRect(cakeX - 2, cakeY - 22, 4, 12, 1);
+            ctx.fill();
+            ctx.stroke();
+
+            // Ngọn nến lung linh
+            if (candleLit) {
+                let scale = isBlowing ? (Math.random() * 0.5 + 0.5) : (1 + Math.sin(Date.now() * 0.01) * 0.15);
+                
+                let glow = ctx.createRadialGradient(cakeX, cakeY - 26, 1, cakeX, cakeY - 26, 18);
+                glow.addColorStop(0, 'rgba(254, 240, 138, 0.8)');
+                glow.addColorStop(1, 'rgba(254, 240, 138, 0)');
+                ctx.fillStyle = glow;
+                ctx.beginPath();
+                ctx.arc(cakeX, cakeY - 26, 18, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.save();
+                ctx.translate(cakeX, cakeY - 24);
+                if (isBlowing) ctx.rotate(-0.4);
+                ctx.fillStyle = '#ff9800';
+                ctx.beginPath();
+                ctx.arc(0, 0, 3.5 * scale, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffeb3b';
+                ctx.beginPath();
+                ctx.arc(0, -2 * scale, 2 * scale, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            ctx.restore();
+        }
+
+        let frameCount = 0;
+        function animate() {
+            ctx.clearRect(0, 0, W, H);
+
+            // 1. Đom đóm & Tia lửa
+            for (let idx = particles.length - 1; idx >= 0; idx--) {
+                const p = particles[idx];
+                if (p.vx !== undefined) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.life -= 0.02;
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, Math.max(0, p.radius * p.life), 0, Math.PI * 2);
+                    ctx.fill();
+                    if (p.life <= 0) particles.splice(idx, 1);
+                } else {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    if (p.y < 0) p.y = H;
+                    if (p.x < 0) p.x = W;
+
+                    ctx.fillStyle = `rgba(255, 182, 193, ${Math.abs(Math.sin(p.alpha)) * 0.8})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    p.alpha += 0.02;
+                }
+            }
+
+            // 2. Vẽ Cây & Tán lá
+            if (isTreeGrowing) {
+                const { treeX, treeBaseY, treeHeadY, scale } = getLayout();
+                ctx.save();
+                ctx.translate(treeX, treeBaseY);
+                ctx.scale(scale, scale);
+                ctx.translate(-treeX, -treeBaseY);
+
+                if (treeProgress < 1) treeProgress += 0.015;
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#4a2810';
+                ctx.lineWidth = 16;
+                ctx.lineCap = 'round';
+                ctx.moveTo(treeX, treeBaseY);
+                let currentY = treeBaseY - (treeBaseY - treeHeadY) * treeProgress;
+                ctx.lineTo(treeX, currentY);
+                ctx.stroke();
+
+                if (treeProgress > 0.3) {
+                    let bf = (treeProgress - 0.3) * 1.43;
+
+                    ctx.lineWidth = 10;
+                    ctx.beginPath();
+                    ctx.moveTo(treeX, treeHeadY + 60);
+                    ctx.bezierCurveTo(
+                        treeX - 50 * bf, treeHeadY + 10,
+                        treeX - 120 * bf, treeHeadY - 40 * bf,
+                        treeX - 150 * bf, treeHeadY - 60 * bf
+                    );
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(treeX, treeHeadY + 60);
+                    ctx.bezierCurveTo(
+                        treeX + 50 * bf, treeHeadY + 10,
+                        treeX + 120 * bf, treeHeadY - 40 * bf,
+                        treeX + 150 * bf, treeHeadY - 60 * bf
+                    );
+                    ctx.stroke();
+
+                    ctx.lineWidth = 7;
+                    ctx.beginPath();
+                    ctx.moveTo(treeX, treeHeadY + 20);
+                    ctx.bezierCurveTo(
+                        treeX - 30 * bf, treeHeadY - 40 * bf,
+                        treeX - 15 * bf, treeHeadY - 110 * bf,
+                        treeX, treeHeadY - 130 * bf
+                    );
+                    ctx.stroke();
+                }
+
+                // Ghế gỗ + Bánh sinh nhật + Nhân vật
+                if (treeProgress >= 0.7) {
+                    drawBenchCoupleCake(treeX, treeBaseY - 55);
+                }
+
+                // Tán lá trái tim
+                if (treeProgress >= 0.65) {
+                    frameCount++;
+                    balloonLeaves.forEach((leaf) => {
+                        if (frameCount > leaf.delay) {
+                            if (leaf.currentScale < leaf.maxScale) {
+                                leaf.currentScale += 0.45;
+                            }
+                            let leafX = treeX + leaf.relX;
+                            let leafY = treeHeadY + leaf.relY;
+                            drawHeart(leafX, leafY, leaf.currentScale, leaf.color, leaf.rotation);
+                        }
+                    });
+
+                    // Trái tim rơi
+                    if (frameCount > 80) {
+                        if (Math.random() < 0.35) {
+                            spawnFallingHeart(treeX, treeHeadY);
+                        }
+
+                        for (let i = fallingHearts.length - 1; i >= 0; i--) {
+                            let fh = fallingHearts[i];
+                            fh.y += fh.speedY;
+                            fh.swayAngle += fh.swaySpeed;
+                            fh.x += Math.sin(fh.swayAngle) * fh.swayRange;
+                            fh.rotation += fh.rotSpeed;
+
+                            if (fh.y > H - 120) {
+                                fh.opacity -= 0.015;
+                            }
+
+                            if (fh.y >= H - 20 || fh.opacity <= 0) {
+                                fallingHearts.splice(i, 1);
+                            } else {
+                                drawHeart(fh.x, fh.y, fh.size, fh.color, fh.rotation, fh.opacity);
+                            }
+                        }
+                    }
+                }
+
+                // 3. Gió thổi nến
+                for (let i = windParticles.length - 1; i >= 0; i--) {
+                    let wp = windParticles[i];
+                    wp.x += wp.vx;
+                    wp.y += wp.vy;
+                    wp.life -= 0.03;
+
+                    ctx.fillStyle = wp.color;
+                    ctx.globalAlpha = Math.max(0, wp.life);
+                    ctx.beginPath();
+                    ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+
+                    if (wp.life <= 0) windParticles.splice(i, 1);
+                }
+
+                // 4. Khói tỏa từ nến
+                for (let i = smokeParticles.length - 1; i >= 0; i--) {
+                    let sp = smokeParticles[i];
+                    sp.x += sp.vx;
+                    sp.y += sp.vy;
+                    sp.size += 0.1;
+                    sp.alpha -= 0.015;
+
+                    ctx.fillStyle = `rgba(203, 213, 225, ${Math.max(0, sp.alpha)})`;
+                    ctx.beginPath();
+                    ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    if (sp.alpha <= 0) smokeParticles.splice(i, 1);
+                }
+
+                // 5. Pháo hoa trái tim bùng nổ
+                for (let i = celebrationParticles.length - 1; i >= 0; i--) {
+                    let cp = celebrationParticles[i];
+                    cp.x += cp.vx;
+                    cp.y += cp.vy;
+                    cp.vy += 0.08;
+                    cp.alpha -= 0.015;
+
+                    drawHeart(cp.x, cp.y, cp.size, cp.color, 0, Math.max(0, cp.alpha));
+
+                    if (cp.alpha <= 0) celebrationParticles.splice(i, 1);
+                }
+                ctx.restore();
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
