@@ -286,7 +286,7 @@
             flex-direction: column;
             align-items: flex-start;
             text-align: left;
-            max-width: 520px;
+            max-width: 680px;
             z-index: 6;
             pointer-events: auto;
         }
@@ -300,14 +300,36 @@
 
         .main-heading {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(3.4rem, 7vw, 5.6rem);
+            font-size: clamp(2.6rem, min(7vw, 9vh), 5.6rem);
             font-weight: 400;
-            text-wrap: balance;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0 0.3em;
             color: #be185d;
             text-shadow: 2px 4px 15px rgba(255, 255, 255, 0.9);
             line-height: 1.15;
             margin-bottom: 5px;
         }
+
+        /* Số tuổi nổi bật */
+        .age {
+            display: block;
+            width: fit-content;
+            font-size: 2.4em;
+            line-height: 0.85;
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 55%, #c2410c 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 0 rgba(255, 255, 255, 0.9)) drop-shadow(0 8px 16px rgba(234, 88, 12, 0.4));
+            transform-origin: 50% 70%;
+        }
+        .age-th { font-size: 0.5em; vertical-align: 0.7em; margin-left: 0.04em; }
+        .stage-2.show .age { animation: agePop 1.1s cubic-bezier(0.2, 1.4, 0.4, 1) 0.5s backwards; }
+        @keyframes agePop { from { opacity: 0; transform: scale(0.4) rotate(-8deg); } }
 
         .sub-heading {
             font-family: 'Poppins', sans-serif;
@@ -450,11 +472,89 @@
         .blow-hint:disabled { cursor: default; }
         .blow-hint:disabled:hover { transform: none; }
 
+        /* Hạc giấy + lá thư */
+        .letter-overlay {
+            position: fixed; inset: 0; z-index: 50;
+            display: none; align-items: center; justify-content: center;
+            padding: 20px;
+            background: rgba(131, 24, 67, 0.42);
+            backdrop-filter: blur(3px);
+            opacity: 0; transition: opacity 0.6s ease;
+        }
+        .letter-overlay.on { display: flex; }
+        .letter-overlay.show { opacity: 1; }
+
+        .crane-wrap {
+            position: absolute; left: 50%; top: 50%;
+            width: 124px; height: 80px; margin: -40px 0 0 -62px;
+            opacity: 0; pointer-events: none;
+        }
+        .crane-wrap.fly { animation: craneFly 2.8s cubic-bezier(0.45, 0.05, 0.35, 1) forwards; }
+        .crane-wrap.out { animation: craneOut 0.6s ease-in forwards; }
+        .crane { filter: drop-shadow(0 6px 10px rgba(131, 24, 67, 0.35)); overflow: visible; }
+        .wing-near, .wing-far { transform-origin: 60px 44px; animation: flap 0.45s ease-in-out infinite alternate; }
+        .wing-far { animation-direction: alternate-reverse; }
+        @keyframes flap { from { transform: scaleY(1); } to { transform: scaleY(0.35); } }
+        @keyframes craneFly {
+            0%   { transform: translate(-45vw, 38vh) rotate(-14deg) scale(0.5); opacity: 0; }
+            12%  { opacity: 1; }
+            40%  { transform: translate(-16vw, 10vh) rotate(9deg) scale(0.85); }
+            70%  { transform: translate(7vw, -9vh) rotate(-7deg) scale(1.05); }
+            100% { transform: translate(0, 0) rotate(0) scale(1); opacity: 1; }
+        }
+        @keyframes craneOut {
+            from { transform: none; opacity: 1; }
+            to   { transform: scale(0.25) rotate(25deg); opacity: 0; }
+        }
+
+        .letter {
+            position: relative;
+            width: min(440px, 88vw);
+            padding: 40px 30px 26px;
+            text-align: center;
+            background: linear-gradient(180deg, #fffafc, #fff1f5);
+            border: 1px solid #fbcfe8;
+            border-radius: 14px;
+            box-shadow: 0 20px 50px rgba(131, 24, 67, 0.35);
+            opacity: 0;
+        }
+        .letter.open { opacity: 1; animation: letterOpen 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+        @keyframes letterOpen {
+            0%   { opacity: 0; transform: perspective(900px) rotateX(-80deg) scale(0.15); }
+            55%  { opacity: 1; }
+            100% { transform: perspective(900px) rotateX(0) scale(1); }
+        }
+        .letter-seal {
+            position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+            width: 38px; height: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
+            background: radial-gradient(circle at 35% 30%, #f472b6, #be185d);
+            box-shadow: 0 3px 8px rgba(190, 24, 93, 0.4);
+        }
+        .letter-line {
+            margin: 0 0 14px;
+            font-family: 'Mali', cursive; font-weight: 600; font-size: 1.05rem;
+            line-height: 1.75; color: #831843; text-wrap: balance;
+        }
+        .letter.open .letter-line { animation: lineIn 0.9s ease backwards; }
+        .letter.open .letter-line:nth-of-type(1) { animation-delay: 1s; }
+        .letter.open .letter-line:nth-of-type(2) { animation-delay: 2.8s; }
+        .letter.open .letter-close { animation: lineIn 0.9s ease 4.4s backwards; }
+        @keyframes lineIn { from { opacity: 0; transform: translateY(8px); } }
+        .letter-close, .letter-reopen {
+            font-family: 'Mali', cursive; font-weight: 700; color: #fff;
+            background: #be185d; border: 0; border-radius: 25px;
+            padding: 9px 22px; cursor: pointer;
+        }
+        .letter-reopen { position: fixed; left: 20px; bottom: 20px; z-index: 20; box-shadow: 0 4px 14px rgba(190, 24, 93, 0.35); }
+        .letter-close:focus-visible, .letter-reopen:focus-visible { outline: 3px solid #831843; outline-offset: 3px; }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
         }
 
         @media (max-width: 850px) {
+            .letter-reopen { left: auto; right: 14px; bottom: auto; top: 14px; }
             .stage-2 {
                 justify-content: center;
                 padding-left: 0;
@@ -465,7 +565,8 @@
                 align-items: center;
                 text-align: center;
             }
-            .main-heading { font-size: clamp(3rem, 14vw, 3.8rem); }
+            .main-heading { font-size: clamp(3rem, 14vw, 3.8rem); justify-content: center; }
+            .age { font-size: 2em; }
         }
     </style>
 </head>
@@ -506,7 +607,7 @@
         <div class="stage-2" id="stage2">
             <div class="content-left">
                 <div class="wish-text">and... make it count</div>
-                <h1 class="main-heading">Happy 20th Birthday</h1>
+                <h1 class="main-heading"><span class="hb">Happy<br>Birthday</span> <span class="age">20<span class="age-th">th</span></span></h1>
                 <div class="sub-heading">Hồ Thị Thanh Thảo</div>
                 <div class="date-tag">✨ 18 . 10 . 2026 ✨</div>
                 <button type="button" class="blow-hint" id="blowBtn">🎂 Chạm để thổi nến chúc mừng!</button>
@@ -523,6 +624,27 @@
 
         <div class="flash-overlay" id="flash"></div>
     </div>
+
+    <div class="letter-overlay" id="letterOverlay" role="dialog" aria-modal="true" aria-label="Thư chúc mừng">
+        <div class="crane-wrap" id="craneWrap">
+            <svg class="crane" viewBox="0 0 124 80" width="124" height="80" aria-hidden="true">
+                <g class="wing-far"><polygon points="62,44 92,8 96,40" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1" stroke-linejoin="round"/></g>
+                <polygon points="22,50 60,38 100,50 60,66" fill="#ffffff" stroke="#f9a8d4" stroke-width="1" stroke-linejoin="round"/>
+                <polygon points="22,50 4,30 9,28 30,45" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1" stroke-linejoin="round"/>
+                <polygon points="98,49 110,28 114,30 104,52" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1" stroke-linejoin="round"/>
+                <polygon points="110,28 121,27 114,33" fill="#fb7185"/>
+                <line x1="60" y1="38" x2="60" y2="66" stroke="#fbcfe8" stroke-width="1"/>
+                <g class="wing-near"><polygon points="58,42 34,4 84,36" fill="#fbcfe8" stroke="#f472b6" stroke-width="1" stroke-linejoin="round"/></g>
+            </svg>
+        </div>
+        <div class="letter" id="letter">
+            <div class="letter-seal">💖</div>
+            <p class="letter-line">Chúc tuổi 18 của bạn là khởi đầu cho những giấc mơ lớn, những chuyến đi xa và những câu chuyện đẹp.</p>
+            <p class="letter-line">Mong bạn luôn có đủ can đảm để lựa chọn con đường mình muốn và đủ kiên trì để đi đến cuối con đường ấy.</p>
+            <button type="button" class="letter-close" id="letterClose">Đóng thư</button>
+        </div>
+    </div>
+    <button type="button" class="letter-reopen" id="letterReopen" hidden>💌 Đọc lại thư</button>
 
     <script>
         const stage1 = document.getElementById('stage1');
@@ -796,8 +918,11 @@
             let errMsg = '';
             if (WEB3FORMS_KEY && WEB3FORMS_KEY !== 'DAN_ACCESS_KEY_VAO_DAY') {
                 try {
+                    const ctrl = new AbortController();
+                    const killer = setTimeout(() => ctrl.abort(), 8000);
                     const res = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
+                        signal: ctrl.signal,
                         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                         body: JSON.stringify({
                             access_key: WEB3FORMS_KEY,
@@ -806,6 +931,7 @@
                             message: text
                         })
                     });
+                    clearTimeout(killer);
                     const data = await res.json();
                     delivered = res.ok && data.success === true;
                     if (!delivered) errMsg = data.message || ('HTTP ' + res.status);
@@ -840,7 +966,50 @@
                     alpha: 1
                 });
             }
+            setTimeout(playCraneLetter, 1400);
         });
+
+        // Hạc giấy bay đến và mở thư
+        let letterRun = 0;
+        function playCraneLetter(skipCrane) {
+            const overlay = document.getElementById('letterOverlay');
+            const crane = document.getElementById('craneWrap');
+            const letter = document.getElementById('letter');
+            document.getElementById('letterReopen').hidden = true;
+            const run = ++letterRun;
+
+            letter.classList.remove('open');
+            crane.className = 'crane-wrap';
+            overlay.classList.add('on');
+            requestAnimationFrame(() => overlay.classList.add('show'));
+            void crane.offsetWidth;
+
+            const openLetter = () => {
+                if (run !== letterRun) return;
+                crane.classList.remove('fly');
+                if (!skipCrane) crane.classList.add('out');
+                letter.classList.add('open');
+                setTimeout(() => { if (run === letterRun) document.getElementById('letterClose').focus(); }, 4800);
+            };
+            if (skipCrane === true) { openLetter(); }
+            else {
+                crane.classList.add('fly');
+                setTimeout(openLetter, 2800);
+            }
+        }
+        function closeLetter() {
+            const overlay = document.getElementById('letterOverlay');
+            if (!overlay.classList.contains('on')) return;
+            letterRun++;
+            overlay.classList.remove('show');
+            setTimeout(() => {
+                overlay.classList.remove('on');
+                document.getElementById('letterReopen').hidden = false;
+            }, 600);
+        }
+        document.getElementById('letterClose').addEventListener('click', closeLetter);
+        document.getElementById('letterReopen').addEventListener('click', () => playCraneLetter(true));
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLetter(); });
 
         blowBtn.addEventListener('click', triggerBlowCandle);
         canvas.addEventListener('click', (e) => {
